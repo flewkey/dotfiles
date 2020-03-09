@@ -4,14 +4,21 @@
 #include <unistd.h>
 #include <limits.h>
 
-char *get_host() {
+char *get_user()
+{
+	return getenv("USER");
+}
+
+char *get_host()
+{
 	char *host;
 	host = malloc(_POSIX_HOST_NAME_MAX);
 	gethostname(host, _POSIX_HOST_NAME_MAX);
 	return host;
 }
 
-char *get_wd() {
+char *get_wd()
+{
 	char *home;
 	char wd_raw[PATH_MAX];
 	char *wd;
@@ -25,8 +32,9 @@ char *get_wd() {
 	return wd;
 }
 
-int main() {
-	printf("%s@%s %s", getlogin(), get_host(), get_wd());
+int main()
+{
+	printf("%s@%s %s", get_user(), get_host(), get_wd());
 	return 0;
 }
 
