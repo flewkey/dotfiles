@@ -5,6 +5,7 @@ export EDITOR=vim
 export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME=~/etc
 export XDG_SESSION_TYPE=wayland
+export WLR_DRM_DEVICES=/dev/dri/card0
 export GDK_BACKEND=wayland
 export GPG_TTY=$(tty)
 
