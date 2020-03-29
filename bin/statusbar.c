@@ -5,7 +5,8 @@
 #include <math.h>
 #include <alsa/asoundlib.h>
 
-char *stat_batt() {
+char *stat_batt()
+{
 	FILE *f;
 	char *batt_now;
 	char *batt_max;
@@ -31,7 +32,8 @@ char *stat_batt() {
 	return fmt;
 }
 
-char *stat_vol() {
+char *stat_vol()
+{
 	snd_mixer_t *handle;
 	snd_mixer_selem_id_t *sid;
 	snd_mixer_elem_t *elem;
@@ -56,7 +58,8 @@ char *stat_vol() {
 	return fmt;
 }
 
-char *stat_bright() {
+char *stat_bright()
+{
 	FILE *f;
 	char *value;
 	char *max;
@@ -76,7 +79,8 @@ char *stat_bright() {
 	return fmt;
 }
 
-char *stat_date() {
+char *stat_date()
+{
 	time_t raw;
 	struct tm *info;
 	char *fmt;
@@ -87,7 +91,8 @@ char *stat_date() {
 	return fmt;
 }
 
-char *stat_time() {
+char *stat_time()
+{
 	time_t raw;
 	struct tm *info;
 	char *fmt;
@@ -98,9 +103,9 @@ char *stat_time() {
 	return fmt;
 }
 
-int main() {
+int main()
+{
 	printf("Battery: %s | Volume: %s | Brightness: %s | Date: %s | Time: %s\n",
 	stat_batt(), stat_vol(), stat_bright(), stat_date(), stat_time());
 	return 0;
 }
-
