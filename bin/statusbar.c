@@ -58,6 +58,38 @@ char *stat_vol()
 	return fmt;
 }
 
+char *get_value(char *line) {
+	char *value;
+	value = malloc(strlen(line) - 3);
+	strncpy(value, line, strlen(line) - 4);
+	value[strlen(line) - 4] = 0;
+	value = strrchr(value, ' ');
+	return value + 1;
+}
+
+char *stat_mem()
+{
+	FILE *f;
+	size_t line_len = 28;
+	char *line;
+	char *total;
+	char *free;
+	double percent;
+	char *fmt;
+	f = fopen("/proc/meminfo", "r");
+	line = malloc(line_len);
+	while (getline(&line, &line_len, f) != -1) {
+		if (memcmp(line, "MemTotal", 8) == 0)
+			total = get_value(line);
+		if (memcmp(line, "MemFree", 7) == 0)
+			free = get_value(line);
+	}
+	fclose(f);
+	percent = ((double)atoi(total) - (double)atoi(free)) / (double)atoi(total) * 100;
+	sprintf(fmt, "%i%%", (int)round(percent));
+	return fmt;
+}
+
 char *stat_bright()
 {
 	FILE *f;
@@ -105,7 +137,8 @@ char *stat_time()
 
 int main()
 {
-	printf("Battery: %s | Volume: %s | Brightness: %s | Date: %s | Time: %s\n",
-	stat_batt(), stat_vol(), stat_bright(), stat_date(), stat_time());
+	printf("Battery: %s | Volume: %s | Memory: %s | Brightness: %s | Date: %s | Time: %s\n",
+	stat_batt(), stat_vol(), stat_mem(), stat_bright(), stat_date(),
+	stat_time());
 	return 0;
 }
