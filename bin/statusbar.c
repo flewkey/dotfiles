@@ -22,8 +22,8 @@ char *stat_batt()
 	fgets(batt_max, 9, f);
 	fclose(f);
 	f = fopen("/sys/class/power_supply/BAT0/status", "r");
-	batt_state = malloc(13);
-	fgets(batt_state, 13, f);
+	batt_state = malloc(14);
+	fgets(batt_state, 14, f);
 	batt_state[strlen(batt_state)-1] = 0; // Remove newline
 	fclose(f);
 	batt_percent = (double)atoi(batt_now) / atoi(batt_max) * 100;
