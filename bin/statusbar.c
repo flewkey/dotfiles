@@ -85,6 +85,7 @@ char *stat_mem()
 			free = get_value(line);
 	}
 	fclose(f);
+	fmt = malloc(5);
 	percent = ((double)atoi(total) - (double)atoi(free)) / (double)atoi(total) * 100;
 	sprintf(fmt, "%i%%", (int)round(percent));
 	return fmt;
