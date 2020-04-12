@@ -21,13 +21,6 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 # Output settings
 output * bg $bg fill
 
-# Idle settings
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
-                 resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
-
 # Audio controls
 bindsym XF86AudioMute exec amixer -c 0 sset Master 0% mute
 bindsym XF86AudioLowerVolume exec amixer -c 0 sset Master 4%- unmute
@@ -109,7 +102,7 @@ bindsym $mod+r mode "resize"
 # Status bar
 bar {
 	position top
-	status_command while statusbar; do sleep 1; done
+	status_command while statusbar; do sleep 0.5; done
 	colors {
 		statusline #ffffff
 		background #323232
