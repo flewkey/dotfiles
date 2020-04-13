@@ -1,3 +1,2 @@
 export PS1='$(prompt) \$ '
 export GPG_TTY=$(tty)
-

@@ -8,4 +8,7 @@ export XDG_SESSION_TYPE=wayland
 export WLR_DRM_DEVICES=/dev/dri/card0
 export GDK_BACKEND=wayland
 export GPG_TTY=$(tty)
-
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export IBUS_ENABLE_SYNC_MODE=1
