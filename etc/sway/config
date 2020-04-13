@@ -99,6 +99,14 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Language controls
+mode "language" {
+	bindsym p exec ibus engine libpinyin; mode "default"
+	bindsym Return exec ibus engine xkb:us::eng; mode "default"
+	bindsym Escape exec ibus engine xkb:us::eng; mode "default"
+}
+bindsym $mod+i mode "language"
+
 # Status bar
 bar {
 	position top
