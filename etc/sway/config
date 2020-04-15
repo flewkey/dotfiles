@@ -17,6 +17,10 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 	natural_scroll enabled
 	dwt disabled
 }
+input "1121:19793:DELL_Laser_Mouse" {
+	natural_scroll enabled
+	scroll_factor 3
+}
 
 # Output settings
 output * bg $bg fill
