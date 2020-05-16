@@ -12,23 +12,8 @@ set $menu dmenu_path | bemenu | xargs swaymsg exec --
 # Background
 set $bg /usr/share/backgrounds/sway/yokohama_cityscape.jpeg
 
-# Input settings
-input "2:7:SynPS/2_Synaptics_TouchPad" {
-	natural_scroll enabled
-	dwt disabled
-}
-input "1121:19793:DELL_Laser_Mouse" {
-	natural_scroll enabled
-	scroll_factor 3
-}
-input "21827:71:UC-Logic_19\"_Tablet_Monito_Pen" {
-	map_to_region 1920 0 1440 900
-}
-
 # Output settings
 output * bg $bg fill
-output eDP-1 pos 0 0 res 1920x1080
-output HDMI1 pos 1920 0 res 1440x900
 
 # Audio controls
 bindsym XF86AudioMute exec amixer -c 0 sset Master 0% mute
@@ -128,3 +113,4 @@ bar {
 }
 
 include /etc/sway/config.d/*
+include ~/etc/sway/`hostname`
