@@ -1,2 +1,5 @@
+# Input settings
+input "1046:911:Goodix_Capacitive_TouchScreen" map_to_output DSI-1
+
 # Output settings
 output DSI-1 transform 90
