@@ -1,0 +1,16 @@
+# Input settings
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+	natural_scroll enabled
+	dwt disabled
+}
+input "1121:19793:DELL_Laser_Mouse" {
+	natural_scroll enabled
+	scroll_factor 3
+}
+input "21827:71:UC-Logic_19\"_Tablet_Monito_Pen" {
+	map_to_region 1920 0 1440 900
+}
+
+# Output settings
+output eDP-1 pos 0 0 res 1920x1080
+output HDMI1 pos 1920 0 res 1440x900
