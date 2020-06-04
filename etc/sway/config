@@ -9,6 +9,11 @@ set $right l
 set $term kitty
 set $menu dmenu_path | bemenu | xargs swaymsg exec --
 
+# Audio commands
+set $mute amixer -c 0 sset Master 0% mute
+set $voldown amixer -c 0 sset Master 4%- unmute
+set $volup amixer -c 0 sset Master 4%+ unmute
+
 # Host-specific config
 include ~/etc/sway/`hostname`
 
@@ -19,9 +24,9 @@ set $bg /usr/share/backgrounds/sway/yokohama_cityscape.jpeg
 output * bg $bg fill
 
 # Audio controls
-bindsym XF86AudioMute exec amixer -c 0 sset Master 0% mute
-bindsym XF86AudioLowerVolume exec amixer -c 0 sset Master 4%- unmute
-bindsym XF86AudioRaiseVolume exec amixer -c 0 sset Master 4%+ unmute
+bindsym XF86AudioMute exec $mute
+bindsym XF86AudioLowerVolume exec $voldown
+bindsym XF86AudioRaiseVolume exec $volup
 
 # Brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5
