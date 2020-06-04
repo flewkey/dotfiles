@@ -9,6 +9,9 @@ set $right l
 set $term kitty
 set $menu dmenu_path | bemenu | xargs swaymsg exec --
 
+# Host-specific config
+include ~/etc/sway/`hostname`
+
 # Background
 set $bg /usr/share/backgrounds/sway/yokohama_cityscape.jpeg
 
@@ -113,4 +116,3 @@ bar {
 }
 
 include /etc/sway/config.d/*
-include ~/etc/sway/`hostname`
