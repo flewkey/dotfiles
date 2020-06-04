@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <time.h>
 #include <string.h>
 #include <math.h>
@@ -32,6 +33,29 @@ char *stat_batt()
 	return fmt;
 }
 
+bool earbuds_on()
+{
+	snd_mixer_t *handle;
+	snd_mixer_selem_id_t *sid;
+	snd_mixer_elem_t *elem;
+	long value;
+	long min;
+	long max;
+	long percent;
+	char *fmt;
+	bool earbuds = false;
+	snd_mixer_open(&handle, 0);
+	snd_mixer_attach(handle, "bluealsa");
+	snd_mixer_selem_register(handle, NULL, NULL);
+	snd_mixer_load(handle);
+	snd_mixer_selem_id_alloca(&sid);
+	snd_mixer_selem_id_set_index(sid, 0);
+	elem = snd_mixer_first_elem(handle);
+	if (elem)
+		return true;
+	return false;
+}
+
 char *stat_vol()
 {
 	snd_mixer_t *handle;
@@ -42,13 +66,19 @@ char *stat_vol()
 	long max;
 	long percent;
 	char *fmt;
+	bool earbuds = earbuds_on();
 	snd_mixer_open(&handle, 0);
+	snd_mixer_attach(handle, "bluealsa");
 	snd_mixer_attach(handle, "default");
 	snd_mixer_selem_register(handle, NULL, NULL);
 	snd_mixer_load(handle);
 	snd_mixer_selem_id_alloca(&sid);
 	snd_mixer_selem_id_set_index(sid, 0);
-	snd_mixer_selem_id_set_name(sid, "Master");
+	if (earbuds == false) {
+		snd_mixer_selem_id_set_name(sid, "Master");
+	} else {
+		snd_mixer_selem_id_set_name(sid, "Push - A2DP");
+	}
 	elem = snd_mixer_find_selem(handle, sid);
 	snd_mixer_selem_get_playback_volume(elem, SND_MIXER_SCHN_MONO, &value);
 	snd_mixer_selem_get_playback_volume_range(elem, &min, &max);
