@@ -9,4 +9,9 @@ input "10182:500:GDX1515:00_27C6:01F4_Touchpad" {
 
 # Output settings
 output eDP-1 pos 0 0 res 1920x1080
-output HDMI-A-1 pos 0 1080 transform 90
+output HDMI-A-1 {
+	pos 0 1080
+	transform 90
+	scale 2
+	disable
+}
