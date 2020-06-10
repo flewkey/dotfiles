@@ -11,12 +11,16 @@ input "10182:500:GDX1515:00_27C6:01F4_Touchpad" {
 	natural_scroll enabled
 	dwt disabled
 }
+input "21827:71:UC-Logic_19\"_Tablet_Monito_Pen" {
+	map_to_region 0 0 1440 900
+}
 
 # Output settings
-output eDP-1 pos 0 0 res 1920x1080
+output eDP-1 pos 1440 0 res 1920x1080
 output HDMI-A-1 {
 	pos 0 1080
 	transform 90
 	scale 2
 	disable
 }
+output HDMI-A-2 pos 0 0 res 1440x900
